@@ -1,3 +1,10 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+source $ZSH/oh-my-zsh.sh
 #####################################################################
 ###                                                               ###
 ### This config depends on NerdFonts to be used in your terminal, ###
@@ -51,9 +58,6 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 #setopt share_history         # share command history data
 
-# force zsh to show the complete history
-alias history="history 0"
-
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -91,7 +95,7 @@ IP3=$(ip -4 addr | grep -v 127.0.0.1 | grep -v secondary | grep wlan0 | grep -Po
 
 # Create prompts based on which interfaces are found
 if [ $IP1 ]; then
-	LOCAL="%F{green}─🮤 %F{cyan}$IP1%b%F{green}🮥"
+	LOCAL="%F{green}─🮤 %F{cyan}$IP1%b%F{green}🮥"
 else
 	LOCAL=""
 fi
@@ -103,21 +107,21 @@ else
 fi
 
 if [ $IP3 ]; then
-    WIFI="%F{green}─🮤直 %F{red}$IP3%F{green}🮥"
+    WIFI="%F{green}─🮤 %F{red}$IP3%F{green}🮥"
 else
     WIFI=""
 fi
 
 
 DIR=$'%B%F{yellow}%(6~.%-1~/…/%4~.%5~)%F{green}'
-NAME=$'%F{blue} %F{magenta}CHANGE ME'
+NAME=$'%F{blue} %F{magenta}CHANGE ME'
 
 if [ "$color_prompt" = yes ]; then
 
 	# Assemble the prompt in pieces for readability
 	LINE1=$'%F{green}┌──🮤'$NAME'%F{green}🮥'$LOCAL$VPN$WIFI
 	LINE2=$'\n├──🮤%F{yellow}  '$DIR'🮥'
-	LINE3=$'\n└─%F{blue}   '
+	LINE3=$'\n└─%F{blue}󰣇 %F{white}'
 
 	TIME=$'%t'
 
@@ -235,3 +239,6 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     # change suggestion color
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#999'
 fi
+
+# Created by `pipx` on 2024-04-03 01:11:39
+export PATH="$PATH:/home/raunak/.local/bin"
